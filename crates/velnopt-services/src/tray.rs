@@ -366,6 +366,7 @@ fn rules() -> zbus::Result<Vec<MatchRule<'static>>> {
     Ok(vec![
         MatchRule::builder()
             .msg_type(Type::Signal)
+            .sender("org.freedesktop.DBus")?
             .interface("org.freedesktop.DBus")?
             .member("NameOwnerChanged")?
             .build(),
@@ -397,7 +398,10 @@ impl Tray<'_> {
         let sender = header.sender().map(ToString::to_string);
         let path = header.path().map(|p| p.as_str().to_owned());
         match (interface, member) {
-            (Some("org.freedesktop.DBus"), Some("NameOwnerChanged")) => {
+            // any client can emit this signal; only the bus's own copy is real
+            (Some("org.freedesktop.DBus"), Some("NameOwnerChanged"))
+                if sender.as_deref() == Some("org.freedesktop.DBus") =>
+            {
                 let Ok((name, _, owner)) = message.body().deserialize::<(String, String, String)>()
                 else {
                     return Ok(false);

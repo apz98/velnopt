@@ -123,15 +123,24 @@ fn signals_are_attributed_to_their_module() {
         dbus::classify(&signal("/other", properties, "PropertiesChanged")),
         None
     );
-    let owner = zbus::Message::signal(
-        "/org/freedesktop/DBus",
-        "org.freedesktop.DBus",
-        "NameOwnerChanged",
-    )
-    .unwrap()
-    .build(&("org.bluez", "", ":1.5"))
-    .unwrap();
-    assert_eq!(dbus::classify(&owner), Some(dbus::Module::Bluetooth));
+    let owner = |sender: &str| {
+        zbus::Message::signal(
+            "/org/freedesktop/DBus",
+            "org.freedesktop.DBus",
+            "NameOwnerChanged",
+        )
+        .unwrap()
+        .sender(sender)
+        .unwrap()
+        .build(&("org.bluez", "", ":1.5"))
+        .unwrap()
+    };
+    assert_eq!(
+        dbus::classify(&owner("org.freedesktop.DBus")),
+        Some(dbus::Module::Bluetooth)
+    );
+    // a client forging the bus's signal is ignored
+    assert_eq!(dbus::classify(&owner(":1.42")), None);
 }
 
 #[test]

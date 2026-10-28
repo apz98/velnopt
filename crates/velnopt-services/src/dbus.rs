@@ -225,6 +225,7 @@ fn rules(enabled: Enabled) -> zbus::Result<Vec<MatchRule<'static>>> {
         rules.push(
             MatchRule::builder()
                 .msg_type(Type::Signal)
+                .sender("org.freedesktop.DBus")?
                 .interface("org.freedesktop.DBus")?
                 .member("NameOwnerChanged")?
                 .arg(0, module.service())?
@@ -268,6 +269,10 @@ pub(crate) fn classify(message: &Message) -> Option<Module> {
         .member()
         .is_some_and(|m| m.as_str() == "NameOwnerChanged")
     {
+        // any client can emit this signal; only the bus's own copy is real
+        if header.sender()?.as_str() != "org.freedesktop.DBus" {
+            return None;
+        }
         let (name, _, _): (String, String, String) = message.body().deserialize().ok()?;
         return Module::ALL.into_iter().find(|m| m.service() == name);
     }

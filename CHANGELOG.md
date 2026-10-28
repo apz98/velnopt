@@ -55,3 +55,11 @@ been published.
   into `velnopt-ui`, `velnopt-widgets`, and `velnopt-wayland`.
 - Frame geometry stays validated across crate boundaries, and the rendering API now
   has checked pixel buffer lengths.
+
+### Security
+
+- Tray icon files are opened without blocking, so an item whose `IconThemePath`
+  points at a FIFO or other special file can no longer hang the tray worker.
+- `NameOwnerChanged` is only trusted when the bus itself sends it. Before, any
+  session client could forge it and make the panel drop tray items or refresh
+  service state.

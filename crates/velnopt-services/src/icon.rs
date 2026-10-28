@@ -11,6 +11,7 @@ use std::{
 };
 
 use png::{ColorType, Decoder, Limits, Transformations};
+use rustix::fs::{Mode, OFlags};
 
 use crate::Icon;
 
@@ -108,7 +109,10 @@ fn data_directories() -> Vec<PathBuf> {
 
 /// Decode a regular PNG file (at most 1 MiB and 256x256 pixels) to RGBA8.
 pub(crate) fn decode_png(path: &Path) -> Option<Icon> {
-    let file = File::open(path).ok()?;
+    // the path comes from any session-bus client: opening a FIFO without NONBLOCK
+    // would hang the tray worker before the regular-file check below
+    let flags = OFlags::RDONLY | OFlags::NONBLOCK | OFlags::CLOEXEC;
+    let file = File::from(rustix::fs::open(path, flags, Mode::empty()).ok()?);
     let metadata = file.metadata().ok()?;
     if !metadata.is_file() || metadata.len() > MAX_PNG_BYTES {
         return None;
@@ -252,5 +256,20 @@ mod tests {
         assert!(decode_png(&folder).is_none(), "directories are not icons");
         assert!(decode_png(&folder.join("absent.png")).is_none());
         let _ = fs::remove_dir_all(&folder);
+    }
+
+    #[test]
+    fn fifos_are_rejected_without_blocking() {
+        let folder = std::env::temp_dir().join(format!("vsf-{}", std::process::id()));
+        fs::create_dir_all(&folder).unwrap();
+        let fifo = folder.join("icon.png");
+        nix::unistd::mkfifo(&fifo, nix::sys::stat::Mode::S_IRWXU).unwrap();
+        // a blocking open would never return, so decode on a thread and time out
+        let (done, result) = std::sync::mpsc::channel();
+        let path = fifo.clone();
+        std::thread::spawn(move || done.send(decode_png(&path).is_none()));
+        let rejected = result.recv_timeout(std::time::Duration::from_secs(5));
+        let _ = fs::remove_dir_all(&folder);
+        assert_eq!(rejected, Ok(true), "a FIFO icon path must fail fast");
     }
 }
