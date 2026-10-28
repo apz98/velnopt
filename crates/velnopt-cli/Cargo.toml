@@ -1,0 +1,21 @@
+[package]
+name = "velnopt-cli"
+description = "A configurable native Hyprland panel written in Rust"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license-file.workspace = true
+publish.workspace = true
+
+[[bin]]
+name = "velnopt"
+path = "src/main.rs"
+
+[dependencies]
+clap.workspace = true
+rustix.workspace = true
+velnopt-config.workspace = true
+velnopt-wayland.workspace = true
+
+[lints]
+workspace = true

@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: "19 8 * * 1"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Quality
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Install the repository toolchain
+        run: rustup show active-toolchain
+      - name: Format, lint, test, document, and build
+        run: ./scripts/check.sh
+      - name: Build the local Linux package and collect dependency notices
+        run: ./scripts/package.sh
+      - name: Verify package checksum
+        working-directory: target/dist
+        run: sha256sum -c *.sha256
+
+  audit:
+    name: Dependency audit
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Install the repository toolchain
+        run: rustup show active-toolchain
+      - name: Install cargo-audit
+        run: cargo install cargo-audit --version 0.22.2 --locked
+      - name: Check the lockfile against RustSec advisories
+        run: cargo audit --deny warnings

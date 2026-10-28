@@ -1,0 +1,23 @@
+[package]
+name = "velnopt-wayland"
+description = "Wayland layer-shell lifecycle and event loop for Velnopt"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license-file.workspace = true
+publish.workspace = true
+
+[dependencies]
+smithay-client-toolkit.workspace = true
+calloop.workspace = true
+calloop-wayland-source.workspace = true
+accesskit.workspace = true
+accesskit_unix.workspace = true
+velnopt-config.workspace = true
+velnopt-hyprland.workspace = true
+velnopt-services.workspace = true
+velnopt-ui.workspace = true
+velnopt-widgets.workspace = true
+
+[lints]
+workspace = true

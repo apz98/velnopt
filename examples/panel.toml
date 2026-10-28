@@ -1,0 +1,6 @@
+# Minimal configuration: default styling, a Velnopt label, and a local clock.
+version = 1
+
+[panel]
+edge = "top"
+height = 32

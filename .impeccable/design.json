@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-27T22:47:50.806Z",
+  "title": "Design System: Velnopt native panel",
+  "extensions": {
+    "colorMeta": {
+      "canopy-green": {
+        "role": "neutral",
+        "displayName": "Canopy green",
+        "tonalRamp": [
+          "oklch(15% 0.02917 191.97)",
+          "oklch(26.43% 0.02917 191.97)",
+          "oklch(37.86% 0.02917 191.97)",
+          "oklch(49.29% 0.02917 191.97)",
+          "oklch(60.71% 0.02917 191.97)",
+          "oklch(72.14% 0.02917 191.97)",
+          "oklch(83.57% 0.02917 191.97)",
+          "oklch(95% 0.02917 191.97)"
+        ]
+      },
+      "pale-foreground": {
+        "role": "neutral",
+        "displayName": "Pale foreground",
+        "tonalRamp": [
+          "oklch(15% 0.01335 152.60)",
+          "oklch(26.43% 0.01335 152.60)",
+          "oklch(37.86% 0.01335 152.60)",
+          "oklch(49.29% 0.01335 152.60)",
+          "oklch(60.71% 0.01335 152.60)",
+          "oklch(72.14% 0.01335 152.60)",
+          "oklch(83.57% 0.01335 152.60)",
+          "oklch(95% 0.01335 152.60)"
+        ]
+      },
+      "mint-identity": {
+        "role": "primary",
+        "displayName": "Mint identity",
+        "tonalRamp": [
+          "oklch(15% 0.06700 171.56)",
+          "oklch(26.43% 0.06700 171.56)",
+          "oklch(37.86% 0.06700 171.56)",
+          "oklch(49.29% 0.06700 171.56)",
+          "oklch(60.71% 0.06700 171.56)",
+          "oklch(72.14% 0.06700 171.56)",
+          "oklch(83.57% 0.06700 171.56)",
+          "oklch(95% 0.06700 171.56)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "label": {
+        "displayName": "Panel label",
+        "purpose": "One system-discovered font role for identity, configured text, and time."
+      }
+    }
+  },
+  "components": [
+    {
+      "name": "Full-example native panel preview",
+      "kind": "custom",
+      "refersTo": "panel-full-example",
+      "description": "Documentation approximation of the native full example. Actual glyph shaping and clipping are implemented in Rust; no interactive states exist.",
+      "html": "<div class=\"ds-panel\"><div class=\"ds-panel-group ds-panel-left\"><span class=\"ds-panel-text ds-panel-identity\">Velnopt</span></div><div class=\"ds-panel-group ds-panel-center\"><span class=\"ds-panel-text\">Hyprland</span></div><div class=\"ds-panel-group ds-panel-right\"><span class=\"ds-panel-text\">17:43</span></div></div>",
+      "css": ".ds-panel { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: center; height: 36px; padding: 0 18px; background: #152c2b; color: #e4ede6; font-family: sans-serif; font-size: 14px; line-height: 1.25; overflow: hidden; } .ds-panel-group { display: flex; align-items: center; gap: 24px; min-width: 0; overflow: hidden; } .ds-panel-left { justify-content: flex-start; } .ds-panel-center { justify-content: center; } .ds-panel-right { justify-content: flex-end; } .ds-panel-text { min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; } .ds-panel-identity { color: #96d1bd; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Canopy-green reading surface",
+    "overview": "This describes the implemented native Linux panel, not a user-approved brand.\nA flat, opaque strip presents one line of desktop information with clear\nhorizontal grouping. Color and type are configurable implementation defaults.",
+    "keyCharacteristics": [
+      "A continuous dark surface with pale text and a mint identity label.",
+      "Three independently clipped information groups.",
+      "Display-only text and time, with configuration-driven updates."
+    ],
+    "rules": [
+      {
+        "name": "The Independent Groups Rule",
+        "body": "Left and right groups keep their natural\nwidth. The center group takes the space between them, and sits centered on the panel\nwhen it fits. When both sides overflow, each keeps half the row. Labels get an\nellipsis, and a group that overflows is clipped instead of overlapping its neighbors.\nThere are no breakpoints and no alternative mobile layout.",
+        "section": "layout"
+      }
+    ],
+    "dos": [
+      "Do preserve independent clipping and single-line text shaping.",
+      "Do distinguish configuration defaults from explicit example values.",
+      "Do test actual native output at narrow widths and integer/fractional scales.",
+      "Do preserve the current panel when a reload is invalid."
+    ],
+    "donts": [
+      "Don't present the default palette as a user-approved brand.",
+      "Don't invent controls or interactive states for display-only widgets.",
+      "Don't assume a bundled font or identical glyph metrics across systems.",
+      "Don't treat documentation preview CSS as native rendering behavior."
+    ]
+  }
+}

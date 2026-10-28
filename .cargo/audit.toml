@@ -1,0 +1,8 @@
+# Unmaintained (merged into zbus 6), not vulnerable. accesskit_unix 0.24.1 still needs
+# zbus 5. Remove these once AccessKit moves to zbus 6; see SECURITY.md.
+[advisories]
+ignore = [
+    "RUSTSEC-2026-0370", # zvariant
+    "RUSTSEC-2026-0371", # zbus_names
+    "RUSTSEC-2026-0372", # zvariant_derive
+]

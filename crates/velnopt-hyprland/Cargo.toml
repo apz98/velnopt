@@ -1,0 +1,17 @@
+[package]
+name = "velnopt-hyprland"
+description = "Bounded read-only Hyprland IPC and live desktop state for Velnopt"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license-file.workspace = true
+publish.workspace = true
+
+[dependencies]
+calloop.workspace = true
+rustix.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+
+[lints]
+workspace = true

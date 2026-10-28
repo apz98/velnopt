@@ -1,0 +1,257 @@
+{
+  "captured_at": "2026-10-28T01:41:47Z",
+  "host": {
+    "cpu": "13th Gen Intel(R) Core(TM) i3-1315U",
+    "kernel": "7.2.11-arch1-1"
+  },
+  "hyprland": "Hyprland 0.56.2 built from branch v0.56.2 at commit efb50993780079460b0cbed1363e2166a2de1d9f clean ([gha] Nix: update inputs).",
+  "quickshell": "Quickshell 0.3.2 (revision , distributed by Arch Linux)",
+  "runs": 5,
+  "idle_seconds": 30,
+  "output": "headless 1920x1080, scale 1",
+  "results": {
+    "velnopt-static": {
+      "command": [
+        "target/release/velnopt",
+        "run",
+        "examples/hyprland.toml"
+      ],
+      "samples": [
+        {
+          "startup_ms": 25.2,
+          "idle_cpu_ms": 0.0,
+          "idle_context_switches": 3,
+          "threads": 1,
+          "rss_kib": 9692,
+          "pss_kib": 6813
+        },
+        {
+          "startup_ms": 15.3,
+          "idle_cpu_ms": 0.0,
+          "idle_context_switches": 0,
+          "threads": 1,
+          "rss_kib": 9556,
+          "pss_kib": 6806
+        },
+        {
+          "startup_ms": 15.6,
+          "idle_cpu_ms": 0.0,
+          "idle_context_switches": 3,
+          "threads": 1,
+          "rss_kib": 9704,
+          "pss_kib": 6798
+        },
+        {
+          "startup_ms": 25.1,
+          "idle_cpu_ms": 0.0,
+          "idle_context_switches": 0,
+          "threads": 1,
+          "rss_kib": 9728,
+          "pss_kib": 6841
+        },
+        {
+          "startup_ms": 16.1,
+          "idle_cpu_ms": 0.0,
+          "idle_context_switches": 3,
+          "threads": 1,
+          "rss_kib": 9676,
+          "pss_kib": 6804
+        }
+      ],
+      "summary": {
+        "startup_ms": {
+          "median": 16.1,
+          "min": 15.3,
+          "max": 25.2
+        },
+        "idle_cpu_ms": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "idle_context_switches": {
+          "median": 3,
+          "min": 0,
+          "max": 3
+        },
+        "threads": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "rss_kib": {
+          "median": 9692,
+          "min": 9556,
+          "max": 9728
+        },
+        "pss_kib": {
+          "median": 6806,
+          "min": 6798,
+          "max": 6841
+        }
+      }
+    },
+    "velnopt-desktop": {
+      "command": [
+        "target/release/velnopt",
+        "run",
+        "examples/desktop.toml"
+      ],
+      "samples": [
+        {
+          "startup_ms": 15.1,
+          "idle_cpu_ms": 10.0,
+          "idle_context_switches": 135,
+          "threads": 11,
+          "rss_kib": 14028,
+          "pss_kib": 11114
+        },
+        {
+          "startup_ms": 15.8,
+          "idle_cpu_ms": 0.0,
+          "idle_context_switches": 136,
+          "threads": 11,
+          "rss_kib": 13860,
+          "pss_kib": 11053
+        },
+        {
+          "startup_ms": 17.6,
+          "idle_cpu_ms": 0.0,
+          "idle_context_switches": 133,
+          "threads": 11,
+          "rss_kib": 14100,
+          "pss_kib": 11204
+        },
+        {
+          "startup_ms": 25.5,
+          "idle_cpu_ms": 10.0,
+          "idle_context_switches": 137,
+          "threads": 11,
+          "rss_kib": 14000,
+          "pss_kib": 11107
+        },
+        {
+          "startup_ms": 16.8,
+          "idle_cpu_ms": 10.0,
+          "idle_context_switches": 136,
+          "threads": 11,
+          "rss_kib": 13916,
+          "pss_kib": 11035
+        }
+      ],
+      "summary": {
+        "startup_ms": {
+          "median": 16.8,
+          "min": 15.1,
+          "max": 25.5
+        },
+        "idle_cpu_ms": {
+          "median": 10.0,
+          "min": 0.0,
+          "max": 10.0
+        },
+        "idle_context_switches": {
+          "median": 136,
+          "min": 133,
+          "max": 137
+        },
+        "threads": {
+          "median": 11,
+          "min": 11,
+          "max": 11
+        },
+        "rss_kib": {
+          "median": 14000,
+          "min": 13860,
+          "max": 14100
+        },
+        "pss_kib": {
+          "median": 11107,
+          "min": 11035,
+          "max": 11204
+        }
+      }
+    },
+    "quickshell-static": {
+      "command": [
+        "qs",
+        "-p",
+        "scripts/quickshell-static/shell.qml"
+      ],
+      "samples": [
+        {
+          "startup_ms": 74.4,
+          "idle_cpu_ms": 0.0,
+          "idle_context_switches": 0,
+          "threads": 18,
+          "rss_kib": 121224,
+          "pss_kib": 87313
+        },
+        {
+          "startup_ms": 72.4,
+          "idle_cpu_ms": 10.0,
+          "idle_context_switches": 58,
+          "threads": 19,
+          "rss_kib": 121972,
+          "pss_kib": 88109
+        },
+        {
+          "startup_ms": 75.6,
+          "idle_cpu_ms": 0.0,
+          "idle_context_switches": 0,
+          "threads": 18,
+          "rss_kib": 118436,
+          "pss_kib": 85042
+        },
+        {
+          "startup_ms": 72.7,
+          "idle_cpu_ms": 10.0,
+          "idle_context_switches": 34,
+          "threads": 18,
+          "rss_kib": 119824,
+          "pss_kib": 86236
+        },
+        {
+          "startup_ms": 75.3,
+          "idle_cpu_ms": 0.0,
+          "idle_context_switches": 0,
+          "threads": 18,
+          "rss_kib": 118432,
+          "pss_kib": 84922
+        }
+      ],
+      "summary": {
+        "startup_ms": {
+          "median": 74.4,
+          "min": 72.4,
+          "max": 75.6
+        },
+        "idle_cpu_ms": {
+          "median": 0.0,
+          "min": 0.0,
+          "max": 10.0
+        },
+        "idle_context_switches": {
+          "median": 0,
+          "min": 0,
+          "max": 58
+        },
+        "threads": {
+          "median": 18,
+          "min": 18,
+          "max": 19
+        },
+        "rss_kib": {
+          "median": 119824,
+          "min": 118432,
+          "max": 121972
+        },
+        "pss_kib": {
+          "median": 86236,
+          "min": 84922,
+          "max": 88109
+        }
+      }
+    }
+  }
+}

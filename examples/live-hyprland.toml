@@ -1,0 +1,27 @@
+# Live, read-only Hyprland info. Needs the session's IPC environment.
+version = 1
+
+[panel]
+edge = "top"
+height = 36
+
+[panel.appearance]
+background = "#152c2b"
+foreground = "#e4ede6"
+font = "sans-serif"
+font_size = 14
+padding = 18
+gap = 24
+
+[[panel.widgets]]
+kind = "workspaces"
+position = "left"
+color = "#96d1bd"
+
+[[panel.widgets]]
+kind = "window-title"
+position = "center"
+
+[[panel.widgets]]
+kind = "clock"
+position = "right"

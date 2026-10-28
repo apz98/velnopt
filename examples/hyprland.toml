@@ -1,0 +1,33 @@
+# Full example. Run: velnopt run examples/hyprland.toml
+version = 1
+
+[panel]
+edge = "top"
+height = 36
+# Uncomment to use one monitor only (see `hyprctl monitors`):
+# output = "DP-1"
+
+[panel.appearance]
+background = "#152c2b"
+foreground = "#e4ede6"
+font = "sans-serif"
+font_size = 14
+padding = 18
+gap = 24
+
+[[panel.widgets]]
+kind = "text"
+text = "Velnopt"
+position = "left"
+color = "#96d1bd"
+
+[[panel.widgets]]
+kind = "text"
+text = "Hyprland"
+position = "center"
+
+[[panel.widgets]]
+kind = "clock"
+position = "right"
+# Set to true to display HH:MM UTC instead of local HH:MM.
+utc = false

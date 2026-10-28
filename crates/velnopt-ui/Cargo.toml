@@ -1,0 +1,15 @@
+[package]
+name = "velnopt-ui"
+description = "Bounded software rendering and text layout for Velnopt"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license-file.workspace = true
+publish.workspace = true
+
+[dependencies]
+cosmic-text.workspace = true
+velnopt-config.workspace = true
+
+[lints]
+workspace = true

@@ -1,0 +1,56 @@
+# Desktop panel with controls and services. Run: velnopt run examples/desktop.toml
+#
+# Interactive widgets only act on explicit input: click or press Enter on a
+# workspace, Bluetooth, volume, launcher, or tray item. Scroll on the volume to
+# change it. For keyboard access, bind `pkill -USR1 -x velnopt` (focus the panel)
+# and `pkill -USR2 -x velnopt` (open the launcher) in hyprland.conf; see docs/hyprland.md.
+version = 1
+
+[panel]
+edge = "top"
+height = 36
+
+[panel.appearance]
+background = "#152c2b"
+foreground = "#e4ede6"
+font = "sans-serif"
+font_size = 14
+padding = 18
+gap = 24
+
+[[panel.widgets]]
+kind = "launcher"
+position = "left"
+color = "#96d1bd"
+
+[[panel.widgets]]
+kind = "workspaces"
+position = "left"
+
+[[panel.widgets]]
+kind = "window-title"
+position = "center"
+
+[[panel.widgets]]
+kind = "tray"
+position = "right"
+
+[[panel.widgets]]
+kind = "network"
+position = "right"
+
+[[panel.widgets]]
+kind = "bluetooth"
+position = "right"
+
+[[panel.widgets]]
+kind = "volume"
+position = "right"
+
+[[panel.widgets]]
+kind = "battery"
+position = "right"
+
+[[panel.widgets]]
+kind = "clock"
+position = "right"
