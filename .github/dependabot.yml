@@ -5,6 +5,11 @@ updates:
     schedule:
       interval: weekly
     open-pull-requests-limit: 5
+    # accesskit_unix 0.24 still needs zbus 5; drop this when AccessKit moves to zbus 6
+    # (same reason as the advisory ignores in .cargo/audit.toml)
+    ignore:
+      - dependency-name: zbus
+        update-types: ["version-update:semver-major"]
     groups:
       rust-dependencies:
         patterns: ["*"]
