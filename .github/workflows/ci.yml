@@ -26,6 +26,9 @@ jobs:
           persist-credentials: false
       - name: Install the repository toolchain
         run: rustup show active-toolchain
+      # xkbcommon is linked for keyboard input; dbus-daemon runs the private-bus tests
+      - name: Install system libraries
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends libxkbcommon-dev dbus
       - name: Format, lint, test, document, and build
         run: ./scripts/check.sh
       - name: Build the local Linux package and collect dependency notices
