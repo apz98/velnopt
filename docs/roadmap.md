@@ -45,7 +45,6 @@ Known limits of the current release candidate:
 - [ ] Desktop entries with `Terminal=true` are hidden; no terminal emulator is chosen.
 - [ ] `network` and `battery` are display-only; there are no network controls.
 - [ ] The launcher and tray menus replace the panel's widgets instead of using popups.
-- [ ] With the full desktop example the right group is clipped at about 1280 px width.
 - [ ] Notifications and other interactive components need requirements first.
 - [ ] Decide whether a richer authoring model is needed beyond declarative TOML.
 - [ ] Add native fractional-scale and viewport handling if measurements justify it.
