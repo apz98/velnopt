@@ -21,7 +21,7 @@ publish = false
 accesskit = "0.25.2"
 accesskit_unix = "0.24.1"
 # Already pulled in through calloop. Its safe posix_spawn sets the child's signal mask.
-nix = { version = "0.31.3", default-features = false, features = ["fs", "process", "signal", "term"] }
+nix = { version = "0.32.0", default-features = false, features = ["fs", "process", "signal", "term"] }
 clap = { version = "4.6.7", features = ["derive"] }
 smithay-client-toolkit = { version = "0.21.1", default-features = false, features = ["calloop", "xkbcommon"] }
 # Upstream's fontdb 0.24 migration drops the unmaintained ttf-parser.
